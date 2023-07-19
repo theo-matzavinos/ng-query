@@ -1,0 +1,47 @@
+{
+  "name": "ng-query",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ng-query/src",
+  "prefix": "ng-query",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "ng-query/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "ng-query/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "ng-query/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ng-query/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ng-query/**/*.ts", "ng-query/**/*.html"]
+      }
+    }
+  }
+}
